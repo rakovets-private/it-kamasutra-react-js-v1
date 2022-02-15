@@ -1,0 +1,4 @@
+= it-kamasutra-react-js-v1
+
+* Name: link:https://www.youtube.com/playlist?list=PLcvhF2Wqh7DNVy1OCUpG3i5lyxyBWhGZ8[*React JS - путь самурая 1.0"*]
+* Status: IN PROGRESS
