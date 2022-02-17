@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/it-kamasutra-react-js-v1/static/css/main.4ae0bf87.css",
-    "main.js": "/it-kamasutra-react-js-v1/static/js/main.bdd94eaa.js",
+    "main.css": "/it-kamasutra-react-js-v1/static/css/main.79cd7f9c.css",
+    "main.js": "/it-kamasutra-react-js-v1/static/js/main.1fbb8395.js",
     "static/js/787.eaaab13d.chunk.js": "/it-kamasutra-react-js-v1/static/js/787.eaaab13d.chunk.js",
     "index.html": "/it-kamasutra-react-js-v1/index.html",
-    "main.4ae0bf87.css.map": "/it-kamasutra-react-js-v1/static/css/main.4ae0bf87.css.map",
-    "main.bdd94eaa.js.map": "/it-kamasutra-react-js-v1/static/js/main.bdd94eaa.js.map",
+    "main.79cd7f9c.css.map": "/it-kamasutra-react-js-v1/static/css/main.79cd7f9c.css.map",
+    "main.1fbb8395.js.map": "/it-kamasutra-react-js-v1/static/js/main.1fbb8395.js.map",
     "787.eaaab13d.chunk.js.map": "/it-kamasutra-react-js-v1/static/js/787.eaaab13d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4ae0bf87.css",
-    "static/js/main.bdd94eaa.js"
+    "static/css/main.79cd7f9c.css",
+    "static/js/main.1fbb8395.js"
   ]
 }
