@@ -6,24 +6,24 @@ const App = () => {
     <div className={"app-wrapper"}>
       <header className="header">
         <div className={"header-logo"}>
-          <img src={"https://cryptologos.cc/logos/uniswap-uni-logo.svg?v=021"}/>
+          <img alt={"logo"} src={"https://cryptologos.cc/logos/uniswap-uni-logo.svg?v=021"}/>
         </div>
       </header>
       <nav className={"nav"}>
         <div className={"nav-item"}>
-          <a>Profile</a>
+          <a href={"#profile"}>Profile</a>
         </div>
         <div className={"nav-item"}>
-          <a>Messages</a>
+          <a href={"#messages"}>Messages</a>
         </div>
         <div className={"nav-item"}>
-          <a>News</a>
+          <a href={"#news"}>News</a>
         </div>
         <div className={"nav-item"}>
-          <a>Music</a>
+          <a href={"#music"}>Music</a>
         </div>
         <div className={"nav-item"}>
-          <a>Settings</a>
+          <a href={"#settings"}>Settings</a>
         </div>
       </nav>
       <main className={"content"}>
