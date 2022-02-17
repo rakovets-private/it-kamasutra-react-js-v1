@@ -1,3 +1,42 @@
-ul li {
-  list-style-type: lower-alpha;
+.app-wrapper {
+  display: grid;
+  grid-template-areas:
+  "h h"
+  "n c";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  margin: auto;
+}
+
+.header {
+  grid-area: h;
+  background-color: whitesmoke;
+}
+
+.header-logo img {
+  height: 50px;
+  margin: auto;
+}
+
+.nav {
+  grid-area: n;
+  background-color: antiquewhite;
+}
+
+.content {
+  grid-area: c;
+  background-color: cadetblue;
+}
+
+.content-preview {
+  height: 200px;
+  background: no-repeat center url("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
+}
+
+.content-profile img {
+  height: 200px;
+}
+
+.content-profile > * {
+  display: inline;
 }
