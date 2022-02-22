@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts";
 
 const Profile = () => {
   return (
-    <main className={style.profile}>
+    <div>
       <div className={style.preview}>
       </div>
       <div className={style.info}>
@@ -17,7 +17,7 @@ const Profile = () => {
         </div>
       </div>
       <MyPosts/>
-    </main>
+    </div>
   )
 }
 
