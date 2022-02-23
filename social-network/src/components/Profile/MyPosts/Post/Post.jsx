@@ -1,10 +1,10 @@
 import React from "react";
-import style from './Post.module.css';
+import s from './Post.module.css';
 
 const Post = (props) => {
   return (
-    <div className={style.item}>
-      <img className={style.img}
+    <div className={s.post}>
+      <img className={s.img}
            src='https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg'
       />
       <span>{props.message}</span>

@@ -1,12 +1,13 @@
 import React from "react";
 import Post from "./Post/Post";
+import s from "./MyPosts.module.css"
 
 const MyPosts = () => {
   return (
-    <div className={"posts"}>
+    <div className={s.posts}>
       My posts
       <div className={"sender"}>
-        <textarea></textarea>
+        <textarea></textarea><br/>
         <button>Add post</button>
       </div>
       <Post message="Hi, how are you?" countLike="2"/>

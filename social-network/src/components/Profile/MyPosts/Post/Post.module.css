@@ -1,3 +1,12 @@
+.post {
+  padding: 10px;
+}
+
+.post span {
+  padding: 5px;
+}
+
 .img {
   height: 80px;
+  border-radius: 5%;
 }

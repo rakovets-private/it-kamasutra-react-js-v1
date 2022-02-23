@@ -1,0 +1,18 @@
+.preview {
+  height: 200px;
+  background: no-repeat center url("https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg");
+}
+
+.info {
+  padding: 10px;
+}
+
+.info img {
+  height: 200px;
+  border-radius: 5%;
+}
+
+.info > * {
+  padding: 0 5px;
+  display: inline;
+}
