@@ -12,11 +12,13 @@
 }
 
 .dialogItems .activeLink {
-  color: whitesmoke;
+  color: black;
+  text-decoration: none;
 }
 
 .dialog {
   color: white;
+  text-decoration: none;
 }
 
 .messages {
