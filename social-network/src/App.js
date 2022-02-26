@@ -6,16 +6,16 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from './components/Dialogs/Dialogs'
 import './App.css';
 
-const App = () => {
+const App = (props) => {
   return (
     <BrowserRouter>
       <main className={"app-wrapper"}>
         <Header/>
         <Navbar/>
-        <div class="app-wrapper-content">
+        <div className="app-wrapper-content">
           <Routes>
-            <Route path='/profile' element={<Profile/>}/>
-            <Route path='/dialogs/*' element={<Dialogs/>}/>
+            <Route path='/profile' element={<Profile posts={props.storage.posts}/>}/>
+            <Route path='/dialogs/*' element={<Dialogs dialogs={props.storage.dialogs} messages={props.storage.messages}/>}/>
           </Routes>
         </div>
       </main>
