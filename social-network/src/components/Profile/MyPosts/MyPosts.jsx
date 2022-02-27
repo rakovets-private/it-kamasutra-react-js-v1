@@ -4,13 +4,17 @@ import s from "./MyPosts.module.css"
 
 const MyPosts = (props) => {
   let postElements = props.posts.map(p => <Post key={p.id} message={p.message} countLike={p.countLike}/>)
+  let newPostElement = React.createRef()
+  let addPost = () => {
+    alert(newPostElement.current.value);
+  }
 
   return (
     <div className={s.posts}>
       My posts
       <div className={"sender"}>
-        <textarea></textarea><br/>
-        <button>Add post</button>
+        <textarea ref={newPostElement}/><br/>
+        <button onClick={addPost}>Add post</button>
       </div>
       {postElements}
     </div>

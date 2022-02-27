@@ -1,13 +1,25 @@
 .dialogs {
   display: grid;
   grid-template-areas:
-  "d m";
+  "d m"
+  "d s"
+;
   grid-template-columns: 1fr 4fr;
   margin: auto;
 }
 
 .dialogItems {
   grid-area: d;
+  padding: 10px;
+}
+
+.messages {
+  grid-area: m;
+  padding: 10px;
+}
+
+.sender {
+  grid-area: s;
   padding: 10px;
 }
 
@@ -21,11 +33,3 @@
   text-decoration: none;
 }
 
-.messages {
-  grid-area: m;
-  padding: 10px;
-
-}
-
-.message {
-}
