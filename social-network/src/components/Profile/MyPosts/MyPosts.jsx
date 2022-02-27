@@ -6,7 +6,7 @@ const MyPosts = (props) => {
   let postElements = props.posts.map(p => <Post key={p.id} message={p.message} countLike={p.countLike}/>)
   let newPostElement = React.createRef()
   let addPost = () => {
-    alert(newPostElement.current.value);
+    props.addPost(newPostElement.current.value);
   }
 
   return (
