@@ -1,4 +1,4 @@
-import {renderEntireTree} from '../render';
+let observers = [];
 
 let state = {
   profilePage: {
@@ -26,27 +26,33 @@ let state = {
   }
 }
 
-let counter = 10;
+window.state = state;
 
-export let addPost = (post) => {
-  counter++;
+let postCounter = 10;
+
+export const addPost = (post) => {
+  postCounter++;
   let newPost = {
-    id: counter,
+    id: postCounter,
     message: post,
     countLike: 0
   }
   state.profilePage.posts.push(newPost);
   state.profilePage.newPostText = '';
-  render();
+  notify();
 }
 
-export let updateNewPostText = (text) => {
+export const updateNewPostText = (text) => {
   state.profilePage.newPostText = text;
-  render();
+  notify();
 }
 
-let render = () => {
-  renderEntireTree(state, addPost, updateNewPostText)
+export const observe = (observer) => {
+  observers.push(observer);
 }
+
+const notify = () => {
+  observers.forEach(observer => observer(state));
+};
 
 export default state;
