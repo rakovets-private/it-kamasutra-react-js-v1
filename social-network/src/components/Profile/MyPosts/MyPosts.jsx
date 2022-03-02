@@ -1,7 +1,6 @@
 import React from "react";
 import Post from "./Post/Post";
 import s from "./MyPosts.module.css"
-import {updateNewPostText} from '../../../redux/state';
 
 const MyPosts = (props) => {
   let postElements = props.posts.map(p => <Post key={p.id} message={p.message} countLike={p.countLike}/>)
@@ -11,9 +10,9 @@ const MyPosts = (props) => {
     props.addPost(newPostElement.current.value);
     newPostElement.current.value = '';
   }
-  
+
   let onPostChange = () => {
-    updateNewPostText(newPostElement.current.value);
+    props.updateNewPostText(newPostElement.current.value);
   }
 
   return (
