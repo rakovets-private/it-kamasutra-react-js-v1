@@ -1,3 +1,6 @@
+const ADD_POST_ACTION_TYPE = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT_ACTION_TYPE = 'UPDATE-NEW-POST-TEXT';
+
 let store = {
   _observers: [],
   _postCounter: 10,
@@ -33,7 +36,7 @@ let store = {
   
   dispatch(action) {
     console.log(action);
-    if (action.type === 'ADD_POST') {
+    if (action.type === ADD_POST_ACTION_TYPE) {
       this._postCounter++;
       let newPost = {
         id: this._postCounter,
@@ -43,7 +46,7 @@ let store = {
       this._state.profilePage.posts.push(newPost);
       this._state.profilePage.newPostText = '';
       this._notify();
-    } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
+    } else if (action.type === UPDATE_NEW_POST_TEXT_ACTION_TYPE) {
       this._state.profilePage.newPostText = action.text;
       this._notify();
     }
@@ -55,6 +58,20 @@ let store = {
 
   _notify() {
     this._observers.forEach(observer => observer(this));
+  }
+}
+
+export const addPostActionCreator = (post) => {
+  return {
+    type: ADD_POST_ACTION_TYPE,
+    post: post
+  }
+}
+
+export const updateNewPostTextActionCreator = (text) => {
+  return {
+    type: UPDATE_NEW_POST_TEXT_ACTION_TYPE,
+    text: text
   }
 }
 
