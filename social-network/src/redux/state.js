@@ -31,27 +31,28 @@ let store = {
     return this._state;
   },
   
-  addPost(post) {
-    this._postCounter++;
-    let newPost = {
-      id: this._postCounter,
-      message: post,
-      countLike: 0
+  dispatch(action) {
+    console.log(action);
+    if (action.type === 'ADD_POST') {
+      this._postCounter++;
+      let newPost = {
+        id: this._postCounter,
+        message: action.post,
+        countLike: 0
+      }
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._notify();
+    } else if (action.type === 'UPDATE_NEW_POST_TEXT') {
+      this._state.profilePage.newPostText = action.text;
+      this._notify();
     }
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._notify();
   },
-  
-  updateNewPostText(text) {
-    this._state.profilePage.newPostText = text;
-    this._notify();
-  },
-  
+
   observe(observer) {
     this._observers.push(observer);
   },
-  
+
   _notify() {
     this._observers.forEach(observer => observer(this));
   }
