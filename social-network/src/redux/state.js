@@ -1,9 +1,12 @@
+const ADD_MESSAGE_ACTION_TYPE = 'ADD-MESSAGE-ACTION-TYPE';
 const ADD_POST_ACTION_TYPE = 'ADD-POST';
+const UPDATE_NEW_MESSAGE_TEXT_ACTION_TYPE = 'UPDATE-NEW-MESSAGE-TEXT';
 const UPDATE_NEW_POST_TEXT_ACTION_TYPE = 'UPDATE-NEW-POST-TEXT';
 
 let store = {
   _observers: [],
   _postCounter: 10,
+  _messageCounter: 10,
   _state: {
     profilePage: {
       newPostText: '',
@@ -15,6 +18,7 @@ let store = {
       ],
     },
     dialogsPage: {
+      newMessageText: '',
       dialogs: [
         {id: 1, name: "Ivan"},
         {id: 2, name: "Daniel"},
@@ -49,6 +53,18 @@ let store = {
     } else if (action.type === UPDATE_NEW_POST_TEXT_ACTION_TYPE) {
       this._state.profilePage.newPostText = action.text;
       this._notify();
+    } else if (action.type === ADD_MESSAGE_ACTION_TYPE) {
+      this._messageCounter++;
+      let newMessage = {
+        id: this._messageCounter,
+        message: action.message
+      };
+      this._state.dialogsPage.messages.push(newMessage);
+      this._state.dialogsPage.newMessageText = '';
+      this._notify();
+    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT_ACTION_TYPE) {
+      this._state.dialogsPage.newMessageText = action.text;
+      this._notify();
     }
   },
 
@@ -71,6 +87,20 @@ export const addPostActionCreator = (post) => {
 export const updateNewPostTextActionCreator = (text) => {
   return {
     type: UPDATE_NEW_POST_TEXT_ACTION_TYPE,
+    text: text
+  }
+}
+
+export const addMessageActionCreator = (message) => {
+  return {
+    type: ADD_MESSAGE_ACTION_TYPE,
+    message: message
+  }
+}
+
+export const updateNewMessageTextActionCreator = (text) => {
+  return {
+    type: UPDATE_NEW_MESSAGE_TEXT_ACTION_TYPE,
     text: text
   }
 }
