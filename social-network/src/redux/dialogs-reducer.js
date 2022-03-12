@@ -1,7 +1,5 @@
-import {ADD_POST_ACTION_TYPE, UPDATE_NEW_POST_TEXT_ACTION_TYPE} from './profile-reducer';
-
-export const ADD_MESSAGE_ACTION_TYPE = 'ADD-MESSAGE-ACTION-TYPE';
-export const UPDATE_NEW_MESSAGE_TEXT_ACTION_TYPE = 'UPDATE-NEW-MESSAGE-TEXT';
+const ADD_MESSAGE_ACTION_TYPE = 'ADD-MESSAGE-ACTION-TYPE';
+const UPDATE_NEW_MESSAGE_TEXT_ACTION_TYPE = 'UPDATE-NEW-MESSAGE-TEXT';
 
 export const dialogsReducer = (state, action) => {
   switch (action.type) {

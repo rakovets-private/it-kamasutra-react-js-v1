@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
-import store from './redux/state';
+import store from './redux/store';
 import './index.css';
 
 let renderEntireTree = (store) => {
@@ -21,7 +21,7 @@ let renderEntireTree = (store) => {
 }
 
 renderEntireTree(store);
-store.observe(renderEntireTree);
+store.subscribe(renderEntireTree);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

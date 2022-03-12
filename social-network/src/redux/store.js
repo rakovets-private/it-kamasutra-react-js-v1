@@ -42,7 +42,7 @@ let store = {
     this._notify();
   },
 
-  observe(observer) {
+  subscribe(observer) {
     this._observers.push(observer);
   },
 
