@@ -19,7 +19,8 @@ const MyPosts = (props) => {
     <div className={s.posts}>
       My posts
       <div className={"sender"}>
-        <textarea onChange={onChangePost} ref={newPostElement} value={props.newPostText}/><br/>
+        <textarea onChange={onChangePost} ref={newPostElement} value={props.newPostText}
+                  placeholder="My new post"/><br/>
         <button onClick={onClickAddPost}>Add post</button>
       </div>
       {postElements}
