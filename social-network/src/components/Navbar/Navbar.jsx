@@ -22,7 +22,10 @@ const Navbar = () => {
       </div>
       <div className={style.item}>
         <NavLink to="/music" className={SelectedLink()}>Music</NavLink>
-      </div>
+      </div><br/>
+      <div className={style.item}>
+        <NavLink to="/users" className={SelectedLink()}>Find users</NavLink>
+      </div><br/>
       <div className={style.item}>
         <NavLink to="/settings" className={SelectedLink()}>Settings</NavLink>
       </div>

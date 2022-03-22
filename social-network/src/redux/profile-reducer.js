@@ -14,7 +14,6 @@ let initialState = {
 
 export const profileReducer = (state = initialState, action) => {
   let stateCopy;
-  debugger;
   switch (action.type) {
     case ADD_POST_ACTION_TYPE:
       stateCopy = {
