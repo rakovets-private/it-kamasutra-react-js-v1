@@ -3,19 +3,21 @@ import s from './Users.module.css';
 import * as axios from 'axios';
 
 const Users = (props) => {
-  if (props.users.length === 0) {
-    axios.get("https://social-network.samuraijs.com/api/1.0/users")
-      .then(response => {
-        console.log(response.data.items);
-        props.addUsers(response.data.items);
-      })
-      .catch(
-        reason => {
-          console.log(reason);
-        }
-      )
+  function getUsers() {
+    if (props.users.length === 0) {
+      axios.get("https://social-network.samuraijs.com/api/1.0/users")
+        .then(response => {
+          console.log(response.data.items);
+          props.addUsers(response.data.items);
+        })
+        .catch(
+          reason => {
+            console.log(reason);
+          }
+        )
+    }
   }
-  
+
   let users = [
     {
       id: 5,
@@ -41,7 +43,7 @@ const Users = (props) => {
           </span>
           <span>
             <span>
-              <div>{u.shortname}</div>
+              <div>{u.name}</div>
               <div>{u.status}</div>
             </span>
             <span>
@@ -52,7 +54,7 @@ const Users = (props) => {
           </span>
         <br/></div>)
       }
-      <button onClick={() => props.addUsers(users)}>Show more</button>
+      <button onClick={() => getUsers()}>Show more</button>
     </div>
   )
 }
