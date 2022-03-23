@@ -1,7 +1,21 @@
 import React from 'react';
 import s from './Users.module.css';
+import * as axios from 'axios';
 
 const Users = (props) => {
+  if (props.users.length === 0) {
+    axios.get("https://social-network.samuraijs.com/api/1.0/users")
+      .then(response => {
+        console.log(response.data.items);
+        props.addUsers(response.data.items);
+      })
+      .catch(
+        reason => {
+          console.log(reason);
+        }
+      )
+  }
+  
   let users = [
     {
       id: 5,
@@ -31,13 +45,14 @@ const Users = (props) => {
               <div>{u.status}</div>
             </span>
             <span>
-              <div>{u.location.country}</div>
-              <div>{u.location.city}</div>
+              {/*todo: update REST API*/}
+              <div>{"u.location.country"}</div>
+              <div>{"u.location.city"}</div>
             </span>
           </span>
         <br/></div>)
       }
-      <button onClick={() => props.showMore(users)}>Show more</button>
+      <button onClick={() => props.addUsers(users)}>Show more</button>
     </div>
   )
 }
