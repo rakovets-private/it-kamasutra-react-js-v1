@@ -2,3 +2,11 @@
   height: 80px;
   border-radius: 5%;
 }
+
+.selectedPage {
+  font-weight: bold;
+}
+
+.page {
+  margin: 5px;
+}

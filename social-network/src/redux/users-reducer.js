@@ -1,51 +1,33 @@
-const ADD_USERS_ACTION_TYPE = "ADD-USERS"
 const FOLLOW_ACTION_TYPE = "FOLLOW"
 const UNFOLLOW_ACTION_TYPE = "UNFOLLOW"
+const SET_USERS_ACTION_TYPE = "SET-USERS"
+const SET_CURRENT_PAGE_ACTION_TYPE = "SET-CURRENT-PAGE"
+const SET_TOTAL_COUNT_USERS_ACTION_TYPE = "SET-TOTAL-COUNT-USERS"
 
 let initialState = {
-  users: [
-    // {
-    //   id: 1,
-    //   followed: true,
-    //   shortname: 'Dmitry R.',
-    //   status: '...',
-    //   location: {country: 'Belarus', city: 'Minsk'},
-    //   avatarUrl: "https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg"
-    // },
-    // {
-    //   id: 2,
-    //   followed: false,
-    //   shortname: 'Genry T.',
-    //   status: '...',
-    //   location: {country: 'USA', city: 'New-York'},
-    //   avatarUrl: "https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg"
-    // },
-    // {
-    //   id: 3,
-    //   followed: true,
-    //   shortname: 'Bogdan S.',
-    //   status: '...',
-    //   location: {country: 'Ukraine', city: 'Kiev'},
-    //   avatarUrl: "https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg"
-    // },
-    // {
-    //   id: 4,
-    //   followed: false,
-    //   shortname: 'Elena A.',
-    //   status: '...',
-    //   location: {country: 'Belarus', city: 'Brest'},
-    //   avatarUrl: "https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg"
-    // }
-  ]
+  users: [],
+  pageSize: 10,
+  currentPage: 1,
+  totalCountUsers: 14
 };
 
 export const usersReducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
-    case ADD_USERS_ACTION_TYPE:
+    case SET_USERS_ACTION_TYPE:
       return {
         ...state,
-        users: [...state.users, ...action.users]
+        users: [...action.users]
+      };    
+    case SET_CURRENT_PAGE_ACTION_TYPE:
+      return {
+        ...state,
+        currentPage: action.currentPage
+      };
+    case SET_TOTAL_COUNT_USERS_ACTION_TYPE:
+      return {
+        ...state,
+        totalCountUsers: action.totalCountUsers
       };
     case FOLLOW_ACTION_TYPE:
       return {
@@ -76,10 +58,24 @@ export const usersReducer = (state = initialState, action) => {
   }
 }
 
-export const addUsersAC = (users) => {
+export const setUsersAC = (users) => {
   return {
-    type: ADD_USERS_ACTION_TYPE,
+    type: SET_USERS_ACTION_TYPE,
     users: users
+  }
+}
+
+export const setCurrentPageAC = (currentPage) => {
+  return {
+    type: SET_CURRENT_PAGE_ACTION_TYPE,
+    currentPage: currentPage
+  }
+}
+
+export const setTotalUsersCountAC = (totalCountUsers) => {
+  return {
+    type: SET_TOTAL_COUNT_USERS_ACTION_TYPE,
+    totalCountUsers: totalCountUsers
   }
 }
 

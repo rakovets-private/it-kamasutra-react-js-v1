@@ -3,14 +3,54 @@ import s from './Users.module.css';
 import * as axios from 'axios';
 
 class Users extends React.Component {
-  constructor(props) {
-    super(props);
-    this.getUsers();
+  componentDidMount() {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      .then(response => {
+        console.log(response.data.items);
+        this.props.setUsers(response.data.items);
+        this.props.setTotalCountUsers(response.data.totalCount);
+      })
+      .catch(
+        reason => {
+          console.log(reason);
+        }
+      )
   }
-  
+
+  onPageChange(pageNumber) {
+    this.props.setCurrentPage(pageNumber);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+      .then(response => {
+        console.log(response.data.items);
+        this.props.setUsers(response.data.items);
+      })
+      .catch(
+        reason => {
+          console.log(reason);
+        }
+      )
+  }
+
   render() {
+    let pageCount = Math.ceil(this.props.totalCountUsers / this.props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pageCount; i++) {
+      if (i === 1 || i === 2 
+        || i === pageCount || i === pageCount - 1 
+        || i === this.props.currentPage || i === this.props.currentPage - 1 || i === this.props.currentPage + 1) {
+        pages.push(i);
+      }
+    }
     return (
       <div>
+        <div>
+          {
+            pages.map(p =>
+              <span key={p} className={(this.props.currentPage !== p) ? s.page : s.selectedPage} 
+                    onClick={(e) => this.onPageChange(p) }>{p}</span>)
+          }
+        </div>
+
         {
           this.props.users.map(u => <div key={u.id}>
           <span>
@@ -34,24 +74,9 @@ class Users extends React.Component {
           </span>
             <br/></div>)
         }
-        <button onClick={() => this.getUsers()}>Show more</button>
+        <button onClick={() => null}>Show more</button>
       </div>
     )
-  }
-
-  getUsers = () => {
-    if (this.props.users.length === 0) {
-      axios.get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(response => {
-          console.log(response.data.items);
-          this.props.addUsers(response.data.items);
-        })
-        .catch(
-          reason => {
-            console.log(reason);
-          }
-        )
-    }
   }
 }
 
