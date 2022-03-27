@@ -1,14 +1,13 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {followAC, setUsersAC, unfollowAC, setCurrentPageAC, setTotalUsersCountAC} from '../../redux/users-reducer';
-import * as axios from 'axios';
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from '../../redux/users-reducer';
+import axios from 'axios';
 import Users from './Users';
 
 class UserContainer extends React.Component {
   componentDidMount() {
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then(response => {
-        console.log(response.data.items);
         this.props.setUsers(response.data.items);
         this.props.setTotalCountUsers(response.data.totalCount);
       })
@@ -46,29 +45,23 @@ class UserContainer extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => ({
-  users: state.usersPage.users,
-  pageSize: state.usersPage.pageSize,
-  totalCountUsers: state.usersPage.totalCountUsers,
-  currentPage: state.usersPage.currentPage
-});
-
-let mapDispatchToProps = (dispatch) => ({
-  follow: (userId) => {
-    dispatch(followAC(userId));
-  },
-  unfollow: (userId) => {
-    dispatch(unfollowAC(userId));
-  },
-  setUsers: (users) => {
-    dispatch(setUsersAC(users));
-  },
-  setCurrentPage: (currentPage) => {
-    dispatch(setCurrentPageAC(currentPage));
-  },
-  setTotalCountUsers: (totalUsersCount) => {
-    dispatch(setTotalUsersCountAC(totalUsersCount))
+const mapStateToProps = (state) => {
+  return {
+    users: state.usersPage.users,
+    pageSize: state.usersPage.pageSize,
+    totalCountUsers: state.usersPage.totalCountUsers,
+    currentPage: state.usersPage.currentPage
   }
-});
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    follow: (userId) => dispatch(followAC(userId)),
+    unfollow: (userId) => dispatch(unfollowAC(userId)),
+    setUsers: (users) => dispatch(setUsersAC(users)),
+    setCurrentPage: (currentPage) => dispatch(setCurrentPageAC(currentPage)),
+    setTotalCountUsers: (totalUsersCount) => dispatch(setTotalUsersCountAC(totalUsersCount))
+  }
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
