@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Users.module.css';
 
 let Users = (props) => {
-  let pageCount = Math.ceil(props.totalCountUsers / props.pageSize);
+  let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i = 1; i <= pageCount; i++) {
     if (i === 1 || i === 2

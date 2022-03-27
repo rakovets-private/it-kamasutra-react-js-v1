@@ -29,7 +29,7 @@ export const usersReducer = (state = initialState, action) => {
     case SET_TOTAL_COUNT_USERS_ACTION_TYPE:
       return {
         ...state,
-        totalCountUsers: action.totalCountUsers
+        totalUsersCount: action.totalUsersCount
       };
     case SET_TOGGLE_IS_FETCHING_ACTION_TYPE:
       return {
@@ -65,42 +65,42 @@ export const usersReducer = (state = initialState, action) => {
   }
 }
 
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
   return {
     type: SET_USERS_ACTION_TYPE,
     users: users,
   }
 }
 
-export const setCurrentPageAC = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
   return {
     type: SET_CURRENT_PAGE_ACTION_TYPE,
     currentPage: currentPage
   }
 }
 
-export const setTotalUsersCountAC = (totalCountUsers) => {
+export const setTotalUsersCount = (totalUsersCount) => {
   return {
     type: SET_TOTAL_COUNT_USERS_ACTION_TYPE,
-    totalCountUsers: totalCountUsers
+    totalUsersCount: totalUsersCount
   }
 }
 
-export const setToggleIsFetchingAC = (isFetching) => {
+export const setToggleIsFetching = (isFetching) => {
   return {
     type: SET_TOGGLE_IS_FETCHING_ACTION_TYPE,
     isFetching: isFetching
   }
 }
 
-export const followAC = (userId) => {
+export const follow = (userId) => {
   return {
     type: FOLLOW_ACTION_TYPE,
     userId: userId
   }
 }
 
-export const unfollowAC = (userId) => {
+export const unfollow = (userId) => {
   return {
     type: UNFOLLOW_ACTION_TYPE,
     userId: userId
