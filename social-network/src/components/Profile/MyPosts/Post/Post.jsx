@@ -6,7 +6,7 @@ const Post = (props) => {
     <div className={s.post}>
       <img className={s.img}
            src='https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg'
-      />
+           alt={'avatar'}/>
       <span>{props.message}</span>
       <div>
         <span>like {props.countLike}</span>
