@@ -1,18 +1,22 @@
 import React from "react";
 import s from './ProfileInfo.module.css';
+import avatar from './../../../assets/images/profile-default.png'
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
   return (
     <div className={s.profile}>
       <div className={s.preview}>
       </div>
       <div className={s.info}>
-        <div>
+        <div className={s.avatar}>
           <img alt="avatar"
-               src={"https://images.squarespace-cdn.com/content/v1/58b4791ad2b857c893179e34/1537982923668-VL76J6S6ZAY9IXOG0F84/IMG_2849.jpg?format=1500w"}/>
+               src={props.photos.large ? props.photos.large : avatar}/>
         </div>
-        <div>
-          My description
+        <div className={s.description}>
+          <div><b>Full name</b>: {props.fullName}</div>
+          <div><b>About me</b>: {props.aboutMe}</div>
+          <div><b>Looking for a job</b>: {props.lookingForAJob ? 'Yes' : 'No'}</div>
+          <div><b>Job Description</b>: {props.lookingForAJobDescription}</div>
         </div>
       </div>
     </div>

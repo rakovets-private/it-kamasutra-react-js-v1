@@ -7,12 +7,16 @@
   padding: 10px;
 }
 
-.info img {
-  height: 200px;
+.avatar {
+  display: inline;
+}
+
+img {
+  height: 150px;
   border-radius: 5%;
 }
 
-.info > * {
+.description, .description {
   padding: 0 5px;
   display: inline;
 }

@@ -1,5 +1,6 @@
-const ADD_POST_ACTION_TYPE = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT_ACTION_TYPE = 'UPDATE-NEW-POST-TEXT';
+const ADD_POST_ACTION_TYPE = 'ADD_POST';
+const UPDATE_NEW_POST_TEXT_ACTION_TYPE = 'UPDATE_NEW_POST_TEXT';
+const SET_USER_PROFILE_ACTION_TYPE = 'SET_USER_PROFILE';
 
 let initialState = {
   postCounter: 10,
@@ -10,10 +11,13 @@ let initialState = {
     {id: 3, message: "WTF?!", countLike: 3},
     {id: 4, message: "Oops!", countLike: 7},
   ],
+  userProfile: null,
+  isFetching: true,
 };
 
 export const profileReducer = (state = initialState, action) => {
   let stateCopy;
+  console.log(action);
   switch (action.type) {
     case ADD_POST_ACTION_TYPE:
       stateCopy = {
@@ -27,6 +31,13 @@ export const profileReducer = (state = initialState, action) => {
       stateCopy = {
         ...state,
         newPostText: action.text
+      };
+      break;
+    case SET_USER_PROFILE_ACTION_TYPE:
+      stateCopy = {
+        ...state,
+        userProfile: action.userProfile,
+        isFetching: false,
       };
       break;
     default:
@@ -46,5 +57,12 @@ export const updateNewPostTextActionCreator = (text) => {
   return {
     type: UPDATE_NEW_POST_TEXT_ACTION_TYPE,
     text: text
+  }
+}
+
+export const setUserProfile = (userProfile) => {
+  return {
+    type: SET_USER_PROFILE_ACTION_TYPE,
+    userProfile: userProfile,
   }
 }
