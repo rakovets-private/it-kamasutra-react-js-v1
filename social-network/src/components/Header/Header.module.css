@@ -1,9 +1,20 @@
 .header {
   grid-area: h;
   background-color: whitesmoke;
+  display: flex;
+}
+
+.header_logo {
+  flex: 50%
 }
 
 .header_logo img {
   height: 50px;
+  margin: auto;
+}
+
+.login_block {
+  background-color: burlywood;
+  float: right;
   margin: auto;
 }

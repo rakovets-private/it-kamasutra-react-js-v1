@@ -14,7 +14,6 @@ let initialState = {
 };
 
 export const usersReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case SET_USERS_ACTION_TYPE:
       return {
