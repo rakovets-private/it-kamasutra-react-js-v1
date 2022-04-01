@@ -41,11 +41,6 @@ let Users = (props) => {
                         props.unfollow(u.id);
                       }
                     })
-                    .catch(
-                      reason => {
-                        console.log(reason);
-                      }
-                    )
                 }}>Unfollow</button>
                 : <button onClick={() => {
                   followToUser(u.id)
@@ -54,11 +49,6 @@ let Users = (props) => {
                         props.follow(u.id);
                       }
                     })
-                    .catch(
-                      reason => {
-                        console.log(reason);
-                      }
-                    )
                 }}>Follow</button>}
             </div>
           </span>
@@ -75,7 +65,6 @@ let Users = (props) => {
           </span>
           <br/></div>)
       }
-      <button onClick={() => null}>Show more</button>
     </div>
   )
 }
