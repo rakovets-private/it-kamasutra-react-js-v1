@@ -22,7 +22,7 @@ export const authReducer = (state = initialState, action) => {
   }
 }
 
-export const setAuthUserDataThunkCreator = () => {
+export const getAuthUserDataThunkCreator = () => {
   return (dispatch) => {
     RestApi.auth()
       .then(response => {
