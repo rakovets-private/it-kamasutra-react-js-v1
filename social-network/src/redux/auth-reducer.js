@@ -1,3 +1,5 @@
+import {RestApi} from '../api/RestApi';
+
 const SET_USER_DATA_ACTION_TYPE = 'SET_USER_DATA';
 
 let initialState = {
@@ -16,7 +18,16 @@ export const authReducer = (state = initialState, action) => {
         ...action.data,
       };
     default:
-      return  state;
+      return state;
+  }
+}
+
+export const setAuthUserDataThunkCreator = () => {
+  return (dispatch) => {
+    RestApi.auth()
+      .then(response => {
+        dispatch(setAuthUserData({...response.data.data, isAuth: true}));
+      })
   }
 }
 

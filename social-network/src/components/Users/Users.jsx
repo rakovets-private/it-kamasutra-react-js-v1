@@ -1,8 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import s from './Users.module.css'; 
 import avatar from './../../assets/images/profile-default.png'
-import s from './Users.module.css';
-import {followToUser, unfollowFromUser} from '../../api/api';
 
 let Users = (props) => {
   let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -34,26 +33,10 @@ let Users = (props) => {
             </div>
             <div>
               {u.followed
-                ? <button disabled={props.fetchingUserList.some(id => id === u.id)} onClick={() => {
-                  props.updateFetchingUserList(true, u.id);
-                  unfollowFromUser(u.id)
-                    .then(response => {
-                      if (response.data.resultCode === 0) {
-                        props.unfollow(u.id);
-                        props.updateFetchingUserList(false, u.id);
-                      }
-                    })
-                }}>Unfollow</button>
-                : <button disabled={props.fetchingUserList.some(id => id === u.id)} onClick={() => {
-                  props.updateFetchingUserList(true, u.id);
-                  followToUser(u.id)
-                    .then(response => {
-                      if (response.data.resultCode === 0) {
-                        props.follow(u.id);
-                        props.updateFetchingUserList(false, u.id);
-                      }
-                    })
-                }}>Follow</button>}
+                ? <button disabled={props.fetchingUserList.some(id => id === u.id)}
+                          onClick={() => {props.unfollow(u.id)}}>Unfollow</button>
+                : <button disabled={props.fetchingUserList.some(id => id === u.id)}
+                          onClick={() => {props.follow(u.id)}}>Follow</button>}
             </div>
           </span>
           <span>

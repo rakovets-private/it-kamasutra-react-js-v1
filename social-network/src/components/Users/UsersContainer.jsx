@@ -1,37 +1,20 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {
-  follow,
-  setCurrentPage,
-  setToggleIsFetching,
-  setTotalUsersCount,
-  setUsers,
-  unfollow,
-  updateFetchingUserList
+  unfollowThunkCreator,
+  getUsersThunkCreator,
+  followThunkCreator
 } from '../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
-import {getUsers} from '../../api/api';
 
 class UserContainer extends React.Component {
   componentDidMount() {
-    this.props.setToggleIsFetching(true);
-    getUsers(this.props.currentPage, this.props.pageSize)
-      .then(data => {
-        this.props.setUsers(data.data.items);
-        this.props.setTotalUsersCount(data.data.totalCount);
-        this.props.setToggleIsFetching(false);
-      })
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChange(pageNumber) {
-    this.props.setCurrentPage(pageNumber);
-    this.props.setToggleIsFetching(true);
-    getUsers(pageNumber, this.props.pageSize)
-      .then(data => {
-        this.props.setUsers(data.data.items);
-        this.props.setToggleIsFetching(false);
-      })
+    this.props.getUsers(pageNumber, this.props.pageSize);
   }
 
   render() {
@@ -49,7 +32,6 @@ class UserContainer extends React.Component {
           onPageChange={this.onPageChange.bind(this)}
           follow={this.props.follow}
           unfollow={this.props.unfollow}
-          updateFetchingUserList={this.props.updateFetchingUserList}
         />}
     </>)
   }
@@ -57,16 +39,20 @@ class UserContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    isFetching: state.usersPage.isFetching,
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
     fetchingUserList: state.usersPage.fetchingUserList,
   }
 };
 
 export default connect(
   mapStateToProps,
-  {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, setToggleIsFetching, updateFetchingUserList}
+  {
+    getUsers: getUsersThunkCreator,
+    follow: followThunkCreator,
+    unfollow: unfollowThunkCreator
+  }
 )(UserContainer);

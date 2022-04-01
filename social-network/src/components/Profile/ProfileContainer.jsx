@@ -3,29 +3,17 @@ import {connect} from 'react-redux';
 import {useMatch} from 'react-router-dom';
 import Profile from './Profile';
 import Preloader from '../common/Preloader/Preloader';
-import {setUserProfile} from '../../redux/profile-reducer';
-import {getProfile} from '../../api/api';
+import {setUserProfileTrunkCreator} from '../../redux/profile-reducer';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    getProfile(this.props.match ? this.props.match.params.userId : 2)
-      .then(response => {
-        this.props.setUserProfile(response.data);
-        console.log(response);
-      })
-      .catch(
-        reason => {
-          console.log(reason);
-        }
-      )
+    this.props.setUserProfileTrunkCreator(this.props.match ? this.props.match.params.userId : 2)
   }
 
   render() {
     return (<>
       {this.props.isFetching
-        ? <Preloader
-          isFetching={this.props.isFetching}
-        />
+        ? <Preloader isFetching={this.props.isFetching}/>
         : <Profile {...this.props} />}
     </>);
   }
@@ -47,4 +35,4 @@ const mapStateToProps = (state) => {
 
 const WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {setUserProfileTrunkCreator})(WithUrlDataContainerComponent);

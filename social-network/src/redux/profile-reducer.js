@@ -1,3 +1,5 @@
+import {RestApi} from '../api/RestApi';
+
 const ADD_POST_ACTION_TYPE = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT_ACTION_TYPE = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE_ACTION_TYPE = 'SET_USER_PROFILE';
@@ -43,6 +45,15 @@ export const profileReducer = (state = initialState, action) => {
       stateCopy = state;
   }
   return stateCopy;
+}
+
+export const setUserProfileTrunkCreator = (userId) => {
+  return (dispatch) => {
+    RestApi.getProfile(userId)
+      .then(response => {
+        dispatch(setUserProfile(response.data));
+      })
+  }
 }
 
 export const addPostActionCreator = (post) => {

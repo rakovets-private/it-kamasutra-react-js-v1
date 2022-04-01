@@ -1,3 +1,5 @@
+import {RestApi} from '../api/RestApi';
+
 const FOLLOW_ACTION_TYPE = "FOLLOW"
 const UNFOLLOW_ACTION_TYPE = "UNFOLLOW"
 const SET_USERS_ACTION_TYPE = "SET_USERS"
@@ -21,7 +23,7 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: [...action.users]
-      };    
+      };
     case SET_CURRENT_PAGE_ACTION_TYPE:
       return {
         ...state,
@@ -41,7 +43,7 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingUserList: (action.isFetching)
-          ? [...state.fetchingUserList, action.userId] 
+          ? [...state.fetchingUserList, action.userId]
           : state.fetchingUserList.filter(id => id !== action.userId)
       };
     case FOLLOW_ACTION_TYPE:
@@ -70,6 +72,45 @@ export const usersReducer = (state = initialState, action) => {
       };
     default:
       return state;
+  }
+}
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setToggleIsFetching(true));
+    dispatch(setCurrentPage(currentPage));
+    RestApi.getUsers(currentPage, pageSize)
+      .then(data => {
+        dispatch(setUsers(data.data.items));
+        dispatch(setTotalUsersCount(data.data.totalCount));
+        dispatch(setToggleIsFetching(false));
+      })
+  }
+}
+
+export const unfollowThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(updateFetchingUserList(true, userId));
+    RestApi.unfollowFromUser(userId)
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          dispatch(unfollow(userId));
+          dispatch(updateFetchingUserList(false, userId));
+        }
+      })
+  }
+}
+
+export const followThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(updateFetchingUserList(true, userId));
+    RestApi.followToUser(userId)
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          dispatch(follow(userId));
+          dispatch(updateFetchingUserList(false, userId));
+        }
+      })
   }
 }
 
