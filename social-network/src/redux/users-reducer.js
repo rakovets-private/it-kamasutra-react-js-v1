@@ -4,13 +4,15 @@ const SET_USERS_ACTION_TYPE = "SET_USERS"
 const SET_CURRENT_PAGE_ACTION_TYPE = "SET_CURRENT_PAGE"
 const SET_TOTAL_COUNT_USERS_ACTION_TYPE = "SET_TOTAL_COUNT_USERS"
 const SET_TOGGLE_IS_FETCHING_ACTION_TYPE = "SET_TOGGLE_IS_FETCHING"
+const UPDATE_FETCHING_USER_LIST_ACTION_TYPE = "UPDATE_FETCHING_USER_LIST"
 
 let initialState = {
   users: [],
   pageSize: 10,
   currentPage: 1,
   totalCountUsers: 0,
-  isFetching: true
+  isFetching: true,
+  fetchingUserList: [],
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -34,6 +36,13 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: action.isFetching
+      };
+    case UPDATE_FETCHING_USER_LIST_ACTION_TYPE:
+      return {
+        ...state,
+        fetchingUserList: (action.isFetching)
+          ? [...state.fetchingUserList, action.userId] 
+          : state.fetchingUserList.filter(id => id !== action.userId)
       };
     case FOLLOW_ACTION_TYPE:
       return {
@@ -89,6 +98,14 @@ export const setToggleIsFetching = (isFetching) => {
   return {
     type: SET_TOGGLE_IS_FETCHING_ACTION_TYPE,
     isFetching: isFetching
+  }
+}
+
+export const updateFetchingUserList = (isFetching, userId) => {
+  return {
+    type: UPDATE_FETCHING_USER_LIST_ACTION_TYPE,
+    isFetching: isFetching,
+    userId: userId
   }
 }
 

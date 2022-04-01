@@ -34,19 +34,23 @@ let Users = (props) => {
             </div>
             <div>
               {u.followed
-                ? <button onClick={() => {
+                ? <button disabled={props.fetchingUserList.some(id => id === u.id)} onClick={() => {
+                  props.updateFetchingUserList(true, u.id);
                   unfollowFromUser(u.id)
                     .then(response => {
                       if (response.data.resultCode === 0) {
                         props.unfollow(u.id);
+                        props.updateFetchingUserList(false, u.id);
                       }
                     })
                 }}>Unfollow</button>
-                : <button onClick={() => {
+                : <button disabled={props.fetchingUserList.some(id => id === u.id)} onClick={() => {
+                  props.updateFetchingUserList(true, u.id);
                   followToUser(u.id)
                     .then(response => {
                       if (response.data.resultCode === 0) {
                         props.follow(u.id);
+                        props.updateFetchingUserList(false, u.id);
                       }
                     })
                 }}>Follow</button>}
