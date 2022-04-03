@@ -1,10 +1,11 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {useMatch} from 'react-router-dom';
+import {compose} from 'redux';
 import Profile from './Profile';
 import Preloader from '../common/Preloader/Preloader';
 import {setUserProfileTrunkCreator} from '../../redux/profile-reducer';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
+import withRouter from '../../hoc/withRedirect';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -20,13 +21,6 @@ class ProfileContainer extends React.Component {
   }
 }
 
-const withRouter = (Component) => {
-  return (props) => {
-    const match = useMatch('/profile/:userId/');
-    return <Component {...props} match={match}/>;
-  };
-}
-
 const mapStateToProps = (state) => {
   return {
     userProfile: state.profilePage.userProfile,
@@ -34,4 +28,8 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, {setUserProfileTrunkCreator})(withAuthRedirect(withRouter(ProfileContainer)));
+export default compose(
+  connect(mapStateToProps, {setUserProfileTrunkCreator}),
+  withAuthRedirect,
+  withRouter
+)(ProfileContainer)
