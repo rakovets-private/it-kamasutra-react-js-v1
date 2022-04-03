@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/it-kamasutra-react-js-v1/static/css/main.15386805.css",
-    "main.js": "/it-kamasutra-react-js-v1/static/js/main.83b6022e.js",
+    "main.js": "/it-kamasutra-react-js-v1/static/js/main.ea72a2af.js",
     "static/js/787.eaaab13d.chunk.js": "/it-kamasutra-react-js-v1/static/js/787.eaaab13d.chunk.js",
     "static/media/profile-default.png": "/it-kamasutra-react-js-v1/static/media/profile-default.9a6d1eeed0c6f5427361.png",
     "static/media/spinning-circles.svg": "/it-kamasutra-react-js-v1/static/media/spinning-circles.cff806a7c5b3edb7401158f6331682a1.svg",
     "index.html": "/it-kamasutra-react-js-v1/index.html",
     "main.15386805.css.map": "/it-kamasutra-react-js-v1/static/css/main.15386805.css.map",
-    "main.83b6022e.js.map": "/it-kamasutra-react-js-v1/static/js/main.83b6022e.js.map",
+    "main.ea72a2af.js.map": "/it-kamasutra-react-js-v1/static/js/main.ea72a2af.js.map",
     "787.eaaab13d.chunk.js.map": "/it-kamasutra-react-js-v1/static/js/787.eaaab13d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.15386805.css",
-    "static/js/main.83b6022e.js"
+    "static/js/main.ea72a2af.js"
   ]
 }
