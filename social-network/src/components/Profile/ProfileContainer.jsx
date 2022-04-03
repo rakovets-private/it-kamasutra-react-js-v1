@@ -4,6 +4,7 @@ import {useMatch} from 'react-router-dom';
 import Profile from './Profile';
 import Preloader from '../common/Preloader/Preloader';
 import {setUserProfileTrunkCreator} from '../../redux/profile-reducer';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -30,10 +31,7 @@ const mapStateToProps = (state) => {
   return {
     userProfile: state.profilePage.userProfile,
     isFetching: state.profilePage.isFetching,
-    isAuth: state.auth.isAuth,
   };
 }
 
-const WithUrlDataContainerComponent = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, {setUserProfileTrunkCreator})(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {setUserProfileTrunkCreator})(withAuthRedirect(withRouter(ProfileContainer)));
