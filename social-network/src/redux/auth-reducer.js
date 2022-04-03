@@ -26,7 +26,9 @@ export const getAuthUserDataThunkCreator = () => {
   return (dispatch) => {
     RestApi.auth()
       .then(response => {
-        dispatch(setAuthUserData({...response.data.data, isAuth: true}));
+        if (Object.keys(response.data.data).length !== 0) {
+          dispatch(setAuthUserData({...response.data.data, isAuth: true}));
+        }
       })
   }
 }

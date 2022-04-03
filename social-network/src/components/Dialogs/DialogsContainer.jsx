@@ -5,12 +5,12 @@ import {addMessageActionCreator, updateNewMessageTextActionCreator} from '../../
 let mapStateToProps = (state) => ({
   dialogs: state.dialogsPage.dialogs,
   messages: state.dialogsPage.messages,
-  newMessageText: state.dialogsPage.newMessageText
+  newMessageText: state.dialogsPage.newMessageText,
+  isAuth: state.auth.isAuth
 });
 
 let mapDispatchToProps = (dispatch) => ({
   updateNewMessageText: (text) => {
-    console.log(text)
     dispatch(updateNewMessageTextActionCreator(text))
   },
   addMessage: (text) => dispatch(addMessageActionCreator(text))
