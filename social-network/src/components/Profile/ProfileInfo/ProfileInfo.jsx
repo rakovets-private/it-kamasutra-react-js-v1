@@ -1,4 +1,5 @@
 import React from "react";
+import ProfileStatus from './ProfileStatus';
 import s from './ProfileInfo.module.css';
 import avatar from './../../../assets/images/profile-default.png'
 
@@ -18,6 +19,7 @@ const ProfileInfo = (props) => {
           <div><b>Looking for a job</b>: {props.lookingForAJob ? 'Yes' : 'No'}</div>
           <div><b>Job Description</b>: {props.lookingForAJobDescription}</div>
         </div>
+        <ProfileStatus status={'Hello my friends!'}/>
       </div>
     </div>
   )
