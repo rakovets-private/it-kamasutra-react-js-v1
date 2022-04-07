@@ -2,21 +2,33 @@ import React from 'react';
 
 class ProfileStatus extends React.Component {
   state = {
-    editMode: false
+    editMode: false,
+    userStatus: this.props.userStatus
   }
 
   toggleEditMode = () => {
-    (this.state.editMode)
-      ? this.setState({editMode: false})
-      : this.setState({editMode: true})
+    if (this.state.editMode) {
+      this.setState({editMode: false});
+      this.props.setUserStatusTrunkCreator(this.state.userStatus);
+    } else {
+      this.setState({editMode: true});
+    }
+  }
+
+  onChangeUserStatus = (e) => {
+    this.setState({userStatus: e.currentTarget.value});
   }
 
   render() {
     return (
       <div>
         {this.state.editMode
-          ? <div><input type="text" onBlur={this.toggleEditMode} autoFocus={true} value={this.props.status}/></div>
-          : <div><span onDoubleClick={this.toggleEditMode}>{this.props.status}</span></div>
+          ? <div><input type="text" value={this.state.userStatus}
+                        autoFocus={true}
+                        onBlur={this.toggleEditMode}
+                        onChange={this.onChangeUserStatus}
+          /></div>
+          : <div><span onDoubleClick={this.toggleEditMode}>{this.props.userStatus || '...'}</span></div>
         }
       </div>
     )

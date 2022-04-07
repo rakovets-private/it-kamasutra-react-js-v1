@@ -3,13 +3,19 @@ import {connect} from 'react-redux';
 import {compose} from 'redux';
 import Profile from './Profile';
 import Preloader from '../common/Preloader/Preloader';
-import {setUserProfileTrunkCreator} from '../../redux/profile-reducer';
+import {
+  getUserStatusTrunkCreator,
+  setUserProfileTrunkCreator,
+  setUserStatusTrunkCreator
+} from '../../redux/profile-reducer';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import withRouter from '../../hoc/withRedirect';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    this.props.setUserProfileTrunkCreator(this.props.match ? this.props.match.params.userId : 2)
+    let userId = this.props.match ? this.props.match.params.userId : 2;
+    this.props.setUserProfileTrunkCreator(userId);
+    this.props.getUserStatusTrunkCreator(userId);
   }
 
   render() {
@@ -25,11 +31,12 @@ const mapStateToProps = (state) => {
   return {
     userProfile: state.profilePage.userProfile,
     isFetching: state.profilePage.isFetching,
+    userStatus: state.profilePage.userStatus,
   };
 }
 
 export default compose(
-  connect(mapStateToProps, {setUserProfileTrunkCreator}),
+  connect(mapStateToProps, {setUserProfileTrunkCreator, getUserStatusTrunkCreator, setUserStatusTrunkCreator}),
   withAuthRedirect,
   withRouter
 )(ProfileContainer)

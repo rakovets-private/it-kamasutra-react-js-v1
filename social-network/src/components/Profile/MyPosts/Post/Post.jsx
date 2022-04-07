@@ -1,11 +1,12 @@
 import React from "react";
 import s from './Post.module.css';
+import avatar from './../../../../assets/images/profile-default.png'
 
 const Post = (props) => {
   return (
     <div className={s.post}>
       <img className={s.img}
-           src='https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg'
+           src={avatar}
            alt={'avatar'}/>
       <span>{props.message}</span>
       <div>

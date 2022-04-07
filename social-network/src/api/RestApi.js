@@ -12,9 +12,6 @@ export const RestApi = {
   getUsers(currentPage = 1, pageSize = 10) {
     return instance.get(`/users?page=${currentPage}&count=${pageSize}`);
   },
-  getProfile(userId) {
-    return instance.get(`/profile/${userId}`);
-  },
   auth() {
     return instance.get(`/auth/me`)
   },
@@ -23,5 +20,17 @@ export const RestApi = {
   },
   unfollowFromUser(userId) {
     return instance.delete(`/follow/${userId}`, {})
+  },
+}
+
+export const ProfileApi = {
+  getProfile(userId) {
+    return instance.get(`/profile/${userId}`);
+  },
+  getStatus(userId) {
+    return instance.get(`/profile/status/${userId}`);
+  },
+  putStatus(userStatus) {
+    return instance.put(`/profile/status`, {status: userStatus});
   },
 }

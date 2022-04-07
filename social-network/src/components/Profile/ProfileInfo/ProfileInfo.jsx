@@ -19,7 +19,11 @@ const ProfileInfo = (props) => {
           <div><b>Looking for a job</b>: {props.lookingForAJob ? 'Yes' : 'No'}</div>
           <div><b>Job Description</b>: {props.lookingForAJobDescription}</div>
         </div>
-        <ProfileStatus status={'Hello my friends!'}/>
+        <ProfileStatus 
+          userId={props.userId}
+          userStatus={props.userStatus}
+          setUserStatusTrunkCreator={props.setUserStatusTrunkCreator}
+        />
       </div>
     </div>
   )

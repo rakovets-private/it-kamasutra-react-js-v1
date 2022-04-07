@@ -1,7 +1,8 @@
-import {RestApi} from '../api/RestApi';
+import {ProfileApi, RestApi} from '../api/RestApi';
 
 const ADD_POST_ACTION_TYPE = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT_ACTION_TYPE = 'UPDATE_NEW_POST_TEXT';
+const UPDATE_USER_STATUS_ACTION_TYPE = 'UPDATE_USER_STATUS';
 const SET_USER_PROFILE_ACTION_TYPE = 'SET_USER_PROFILE';
 
 let initialState = {
@@ -15,6 +16,7 @@ let initialState = {
   ],
   userProfile: null,
   isFetching: true,
+  userStatus: '',
 };
 
 export const profileReducer = (state = initialState, action) => {
@@ -34,6 +36,12 @@ export const profileReducer = (state = initialState, action) => {
         newPostText: action.text
       };
       break;
+    case UPDATE_USER_STATUS_ACTION_TYPE:
+      stateCopy = {
+        ...state,
+        userStatus: action.userStatus
+      };
+      break;
     case SET_USER_PROFILE_ACTION_TYPE:
       stateCopy = {
         ...state,
@@ -49,9 +57,29 @@ export const profileReducer = (state = initialState, action) => {
 
 export const setUserProfileTrunkCreator = (userId) => {
   return (dispatch) => {
-    RestApi.getProfile(userId)
+    ProfileApi.getProfile(userId)
       .then(response => {
         dispatch(setUserProfile(response.data));
+      })
+  }
+}
+
+export const getUserStatusTrunkCreator = (userId) => {
+  return (dispatch) => {
+    ProfileApi.getStatus(userId)
+      .then(response => {
+        dispatch(setUserStatus(response.data));
+      })
+  } 
+}
+
+export const setUserStatusTrunkCreator = (userStatus) => {
+  return (dispatch) => {
+    ProfileApi.putStatus(userStatus)
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          dispatch(setUserStatus(userStatus));
+        }
       })
   }
 }
@@ -74,5 +102,12 @@ export const setUserProfile = (userProfile) => {
   return {
     type: SET_USER_PROFILE_ACTION_TYPE,
     userProfile: userProfile,
+  }
+}
+
+export const setUserStatus = (userStatus) => {
+  return {
+    type: UPDATE_USER_STATUS_ACTION_TYPE,
+    userStatus: userStatus,
   }
 }
