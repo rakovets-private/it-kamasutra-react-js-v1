@@ -1,9 +1,7 @@
 const ADD_MESSAGE_ACTION_TYPE = 'ADD-MESSAGE-ACTION-TYPE';
-const UPDATE_NEW_MESSAGE_TEXT_ACTION_TYPE = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
   messageCounter: 10,
-  newMessageText: '',
   dialogs: [
     {id: 1, name: "Ivan"},
     {id: 2, name: "Daniel"},
@@ -24,15 +22,8 @@ export const dialogsReducer = (state = initialState, action) => {
     case ADD_MESSAGE_ACTION_TYPE:
       stateCopy = {
         ...state,
-        newMessageText: '',
         messageCounter: state.messageCounter + 1,
-        messages:  [...state.messages, {id: state.messageCounter, message: action.message}],
-      }
-      break;
-    case UPDATE_NEW_MESSAGE_TEXT_ACTION_TYPE:
-      stateCopy = {
-        ...state,
-        newMessageText: action.text
+        messages: [...state.messages, {id: state.messageCounter, message: action.message}],
       }
       break;
     default:
@@ -49,9 +40,5 @@ export const addMessageActionCreator = (message) => {
   }
 }
 
-export const updateNewMessageTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_TEXT_ACTION_TYPE,
-    text: text
-  }
+export class updateNewMessageTextActionCreator {
 }

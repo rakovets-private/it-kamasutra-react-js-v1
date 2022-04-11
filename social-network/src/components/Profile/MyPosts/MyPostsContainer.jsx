@@ -4,13 +4,9 @@ import MyPosts from './MyPosts';
 
 let mapStateToProps = (state) => ({
   posts: state.profilePage.posts,
-  newPostText: state.profilePage.newPostText
 });
 
 let mapDispatchToProps = (dispatch) => ({
-  updateNewPostText: (text) => {
-    dispatch(updateNewPostTextActionCreator(text))
-  },
   addPost: (text) => dispatch(addPostActionCreator(text))
 });
 

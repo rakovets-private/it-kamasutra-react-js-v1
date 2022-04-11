@@ -1,7 +1,6 @@
-import {ProfileApi, RestApi} from '../api/RestApi';
+import {ProfileApi} from '../api/RestApi';
 
 const ADD_POST_ACTION_TYPE = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT_ACTION_TYPE = 'UPDATE_NEW_POST_TEXT';
 const UPDATE_USER_STATUS_ACTION_TYPE = 'UPDATE_USER_STATUS';
 const SET_USER_PROFILE_ACTION_TYPE = 'SET_USER_PROFILE';
 
@@ -28,12 +27,6 @@ export const profileReducer = (state = initialState, action) => {
         newPostText: '',
         postCounter: state.postCounter + 1,
         posts: [...state.posts, {id: state.postCounter, message: action.post, countLike: 0}]
-      };
-      break;
-    case UPDATE_NEW_POST_TEXT_ACTION_TYPE:
-      stateCopy = {
-        ...state,
-        newPostText: action.text
       };
       break;
     case UPDATE_USER_STATUS_ACTION_TYPE:
@@ -88,13 +81,6 @@ export const addPostActionCreator = (post) => {
   return {
     type: ADD_POST_ACTION_TYPE,
     post: post
-  }
-}
-
-export const updateNewPostTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT_ACTION_TYPE,
-    text: text
   }
 }
 

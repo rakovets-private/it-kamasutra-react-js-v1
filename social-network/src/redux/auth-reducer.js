@@ -10,7 +10,6 @@ let initialState = {
 };
 
 export const authReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case SET_USER_DATA_ACTION_TYPE:
       return {
