@@ -1,7 +1,7 @@
-import {maxLengthCreator, required} from '../../../utils/validatos';
-import {Field, reduxForm} from 'redux-form';
-import {Textarea} from '../../common/FormControls/FormControls';
 import React from 'react';
+import {Field, reduxForm} from 'redux-form';
+import {maxLengthCreator, required} from '../../../utils/validatos';
+import {Textarea} from '../../common/FormControls/FormControls';
 
 let maxLength100 = maxLengthCreator(100);
 

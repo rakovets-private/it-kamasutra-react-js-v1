@@ -15,6 +15,6 @@ export const Textarea = (props) => {
   return (<Element {...props} elementtype='textarea'/>)
 }
 
-export const Input = ({input, meta, ...props}) => {
+export const Input = (props) => {
   return (<Element {...props} elementtype='input'/>)
 }

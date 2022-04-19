@@ -12,15 +12,24 @@ export const RestApi = {
   getUsers(currentPage = 1, pageSize = 10) {
     return instance.get(`/users?page=${currentPage}&count=${pageSize}`);
   },
-  auth() {
-    return instance.get(`/auth/me`)
-  },
   followToUser(userId) {
     return instance.post(`/follow/${userId}`, {})
   },
   unfollowFromUser(userId) {
     return instance.delete(`/follow/${userId}`, {})
   },
+}
+
+export const AuthApi = {
+  auth() {
+    return instance.get(`/auth/me`);
+  },
+  login(email, password, rememberMe) {
+    return instance.post(`/auth/login`, {email: email, password: password, rememberMe: rememberMe});
+  },
+  logout() {
+    return instance.delete(`/auth/login`);
+  }
 }
 
 export const ProfileApi = {
