@@ -13,7 +13,7 @@ import withRouter from '../../hoc/withRedirect';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    let userId = this.props.match ? this.props.match.params.userId : 2;
+    let userId = this.props.match ? this.props.match.params.userId : this.props.authUserId;
     this.props.setUserProfileTrunkCreator(userId);
     this.props.getUserStatusTrunkCreator(userId);
   }
@@ -32,6 +32,7 @@ const mapStateToProps = (state) => {
     userProfile: state.profilePage.userProfile,
     isFetching: state.profilePage.isFetching,
     userStatus: state.profilePage.userStatus,
+    authUserId: state.auth.id
   };
 }
 
