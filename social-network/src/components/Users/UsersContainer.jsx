@@ -1,12 +1,11 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {
-  unfollowThunkCreator,
-  getUsersThunkCreator,
-  followThunkCreator
-} from '../../redux/users-reducer';
+import {followThunkCreator, getUsersThunkCreator, unfollowThunkCreator} from '../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
+import {
+  getCurrentPage, getFetchingUserList, getIsFetching, getPageSize, getTotalUsersCount, getUsers
+} from '../../redux/user-serctors';
 
 class UserContainer extends React.Component {
   componentDidMount() {
@@ -39,12 +38,12 @@ class UserContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isFetching: state.usersPage.isFetching,
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    fetchingUserList: state.usersPage.fetchingUserList,
+    isFetching: getIsFetching(state),
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    fetchingUserList: getFetchingUserList(state),
   }
 };
 

@@ -7,7 +7,6 @@ let initialState = {
 };
 
 export const appReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case INITIALIZED_SUCCESS_ACTION_TYPE:
       return {
