@@ -1,6 +1,7 @@
 import {ProfileApi} from '../api/RestApi';
 
 const ADD_POST_ACTION_TYPE = 'ADD_POST';
+const REMOVE_POST_ACTION_TYPE = 'REMOVE_POST';
 const UPDATE_USER_STATUS_ACTION_TYPE = 'UPDATE_USER_STATUS';
 const SET_USER_PROFILE_ACTION_TYPE = 'SET_USER_PROFILE';
 
@@ -27,6 +28,13 @@ export const profileReducer = (state = initialState, action) => {
         newPostText: '',
         postCounter: state.postCounter + 1,
         posts: [...state.posts, {id: state.postCounter, message: action.post, countLike: 0}]
+      };
+      break;
+    case REMOVE_POST_ACTION_TYPE:
+      stateCopy = {
+        ...state,
+        newPostText: '',
+        posts: [...(state.posts.filter(post => post.id !== action.id))]
       };
       break;
     case UPDATE_USER_STATUS_ACTION_TYPE:
@@ -63,7 +71,7 @@ export const getUserStatusTrunkCreator = (userId) => {
       .then(response => {
         dispatch(setUserStatus(response.data));
       })
-  } 
+  }
 }
 
 export const setUserStatusTrunkCreator = (userStatus) => {
@@ -81,6 +89,13 @@ export const addPostActionCreator = (post) => {
   return {
     type: ADD_POST_ACTION_TYPE,
     post: post
+  }
+}
+
+export const removePostActionCreator = (id) => {
+  return {
+    type: REMOVE_POST_ACTION_TYPE,
+    id: id,
   }
 }
 
