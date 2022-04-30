@@ -1,4 +1,4 @@
-const ADD_MESSAGE_ACTION_TYPE = 'ADD-MESSAGE-ACTION-TYPE';
+const ADD_MESSAGE = 'social-network/dialogs/ADD_MESSAGE';
 
 let initialState = {
   messageCounter: 10,
@@ -19,7 +19,7 @@ let initialState = {
 export const dialogsReducer = (state = initialState, action) => {
   let stateCopy;
   switch (action.type) {
-    case ADD_MESSAGE_ACTION_TYPE:
+    case ADD_MESSAGE:
       stateCopy = {
         ...state,
         messageCounter: state.messageCounter + 1,
@@ -32,13 +32,9 @@ export const dialogsReducer = (state = initialState, action) => {
   return stateCopy;
 }
 
-
 export const addMessageActionCreator = (message) => {
   return {
-    type: ADD_MESSAGE_ACTION_TYPE,
+    type: ADD_MESSAGE,
     message: message
   }
-}
-
-export class updateNewMessageTextActionCreator {
 }

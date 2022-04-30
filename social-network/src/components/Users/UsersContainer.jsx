@@ -4,34 +4,39 @@ import {followThunkCreator, getUsersThunkCreator, unfollowThunkCreator} from '..
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import {
-  getCurrentPage, getFetchingUserList, getIsFetching, getPageSize, getTotalUsersCount, getUsers
+  getCurrentPage,
+  getFetchingUserList,
+  getIsFetching,
+  getPageSize,
+  getTotalUsersCount,
+  getUsers
 } from '../../redux/user-selectors';
 
 class UserContainer extends React.Component {
   componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
+    const {getUsers, currentPage, pageSize} = this.props;
+    getUsers(currentPage, pageSize);
   }
 
   onPageChange(pageNumber) {
-    this.props.getUsers(pageNumber, this.props.pageSize);
+    const {getUsers, pageSize} = this.props;
+    getUsers(pageNumber, pageSize);
   }
 
   render() {
     return (<>
-      {this.props.isFetching
-        ? <Preloader
-          isFetching={this.props.isFetching}
-        />
-        : <Users
-          users={this.props.users}
-          pageSize={this.props.pageSize}
-          totalUsersCount={this.props.totalUsersCount}
-          currentPage={this.props.currentPage}
-          fetchingUserList={this.props.fetchingUserList}
-          onPageChange={this.onPageChange.bind(this)}
-          follow={this.props.follow}
-          unfollow={this.props.unfollow}
-        />}
+      {this.props.isFetching ? <Preloader
+        isFetching={this.props.isFetching}
+      /> : <Users
+        users={this.props.users}
+        pageSize={this.props.pageSize}
+        totalUsersCount={this.props.totalUsersCount}
+        currentPage={this.props.currentPage}
+        fetchingUserList={this.props.fetchingUserList}
+        onPageChange={this.onPageChange.bind(this)}
+        follow={this.props.follow}
+        unfollow={this.props.unfollow}
+      />}
     </>)
   }
 }
@@ -47,11 +52,6 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(
-  mapStateToProps,
-  {
-    getUsers: getUsersThunkCreator,
-    follow: followThunkCreator,
-    unfollow: unfollowThunkCreator
-  }
-)(UserContainer);
+export default connect(mapStateToProps, {
+  getUsers: getUsersThunkCreator, follow: followThunkCreator, unfollow: unfollowThunkCreator
+})(UserContainer);
