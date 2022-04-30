@@ -1,13 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const ProfileStatusWithHooks = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [status, setStatus] = useState(props.userStatus);
 
+  useEffect(() => {
+    console.log("useEffect")
+    setStatus(props.userStatus);
+  }, [props.userStatus])
+
   const activateEditMode = () => {
     setEditMode(true);
   }
-  
+
   const deactivateEditMode = () => {
     setEditMode(false);
     props.setUserStatusTrunkCreator(status);
@@ -16,14 +21,14 @@ const ProfileStatusWithHooks = (props) => {
   const onChangeUserStatus = (e) => {
     setStatus(e.currentTarget.value);
   }
-  
+
   return (
     <div>
       {editMode
         ? <div><input type="text" value={status}
                       autoFocus={true}
-          onBlur={deactivateEditMode}
-          onChange={onChangeUserStatus}
+                      onBlur={deactivateEditMode}
+                      onChange={onChangeUserStatus}
         /></div>
         : <div><span
           onDoubleClick={activateEditMode}
